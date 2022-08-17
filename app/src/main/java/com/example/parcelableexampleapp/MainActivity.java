@@ -14,13 +14,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_COUNTER_1 = "KEY_COUNTER_1";
     private static final String KEY_COUNTER_2 = "KEY_COUNTER_2";
     private static final String KEY_COUNTER_3 = "KEY_COUNTER_3";
+    private static final String KEY_COUNTER = "KEY_COUNTER";
     /*private int counter1 = 0;
     private int counter2 = 0;
     private int counter3 = 0;*/
 
     private Button btn1, btn2, btn3;
     private TextView tv1, tv2, tv3;
-    private final Counter counter = new Counter();
+    private Counter counter = new Counter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +35,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-/*      outState.putInt(KEY_COUNTER_1, counter1);
+
+        /**** SIMPLE DATA  ****/
+        /*outState.putInt(KEY_COUNTER_1, counter1);
         outState.putInt(KEY_COUNTER_2, counter2);
         outState.putInt(KEY_COUNTER_3, counter3);*/
-        outState.putInt(KEY_COUNTER_1, counter.getCounter1());
+        /**** DATA of the class  ****/
+        /*outState.putInt(KEY_COUNTER_1, counter.getCounter1());
         outState.putInt(KEY_COUNTER_2, counter.getCounter2());
-        outState.putInt(KEY_COUNTER_3, counter.getCounter3());
+        outState.putInt(KEY_COUNTER_3, counter.getCounter3());*/
+        /**** DATA of the class with Parcelable  ****/
+        outState.putParcelable(KEY_COUNTER, counter);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        /**** SIMPLE DATA  ****/
         /*counter1 = savedInstanceState.getInt(KEY_COUNTER_1);
         counter2 = savedInstanceState.getInt(KEY_COUNTER_2);
         counter3 = savedInstanceState.getInt(KEY_COUNTER_3);*/
-        counter.setCounter1(savedInstanceState.getInt(KEY_COUNTER_1));
+        /**** DATA of the class  ****/
+        /*counter.setCounter1(savedInstanceState.getInt(KEY_COUNTER_1));
         counter.setCounter2(savedInstanceState.getInt(KEY_COUNTER_2));
-        counter.setCounter3(savedInstanceState.getInt(KEY_COUNTER_3));
+        counter.setCounter3(savedInstanceState.getInt(KEY_COUNTER_3));*/
+        /**** DATA of the class with Parcelable  ****/
+        counter = savedInstanceState.getParcelable(KEY_COUNTER);
         init();
     }
 
