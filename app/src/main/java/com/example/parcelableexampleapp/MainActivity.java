@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private int counter2 = 0;
     private int counter3 = 0;*/
 
-    private Button btn1, btn2, btn3;
+    private Button btn1, btn2, btn3, btnMiniCalculator;
     private TextView tv1, tv2, tv3;
     private Counter counter = new Counter();
 
@@ -64,10 +65,11 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    public void init() {
+    private void init() {
         btn1 = findViewById(R.id.btn_1);
         btn2 = findViewById(R.id.btn_2);
         btn3 = findViewById(R.id.btn_3);
+        btnMiniCalculator= findViewById(R.id.btn_mini_calculator);
         tv1 = findViewById(R.id.tv_1);
         tv1.setText(String.valueOf(counter.getCounter1()));
         tv2 = findViewById(R.id.tv_2);
@@ -94,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
                         counter.incrementCounter3();
                         tv3.setText(String.valueOf(counter.getCounter3()));
                         break;
+                    case R.id.btn_mini_calculator:
+                        Intent intent = new Intent(MainActivity.this, ActivityMiniCalculator.class);
+                        startActivity(intent);
+                        break;
+
                     default: {
                     }
 
@@ -106,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(myListener);
         btn2.setOnClickListener(myListener);
         btn3.setOnClickListener(myListener);
+        btnMiniCalculator.setOnClickListener(myListener);
     }
 }

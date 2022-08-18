@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityMiniCalculator">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_inputted_numbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="numbers"
+        android:textAlignment="textEnd"
+        android:layout_marginBottom="@dimen/margin_default"
+        app:layout_constraintBottom_toTopOf="@+id/et_main"
+        app:layout_constraintEnd_toEndOf="@+id/et_main"
+   />
+
+
+    <EditText
+        android:id="@+id/et_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:ems="10"
+        android:hint="input"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_One"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="1"
+        app:layout_constraintEnd_toStartOf="@id/btn_Plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_main" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Mult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_One" />
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/btn_Three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_Equal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Two" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="."
+        app:layout_constraintEnd_toStartOf="@+id/btn_Clear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Three" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="+"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_One"
+        app:layout_constraintTop_toBottomOf="@+id/et_main" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Mult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Two"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Plus" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Equal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="="
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Three"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Mult" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="CLR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_Point"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Equal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
