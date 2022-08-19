@@ -11,10 +11,15 @@ public class Calculator implements Parcelable {
     private CalcView calcView;
     private String firstNumber = "0";
     private String secondNumber = "";
+    private String history = "";
     private Double result;
     private int operation = 0;
 
     public Calculator(CalcView calcView) {
+        this.calcView = calcView;
+    }
+    // указываем на новую активити в случае поворота экрана или убийства
+    public void setCalcView(CalcView calcView) {
         this.calcView = calcView;
     }
 
@@ -28,7 +33,8 @@ public class Calculator implements Parcelable {
         } else {
             secondNumber += "1";
         }
-        update();
+        history += "1";
+        update(history);
     }
 
     public void onTwoPressed() {
@@ -41,7 +47,8 @@ public class Calculator implements Parcelable {
         } else {
             secondNumber += "2";
         }
-        update();
+        history += "2";
+        update(history);
     }
 
     public void onThreePressed() {
@@ -54,7 +61,8 @@ public class Calculator implements Parcelable {
         } else {
             secondNumber += "3";
         }
-        update();
+        history += "3";
+        update(history);
     }
 
     public void onPointPressed() {
@@ -63,10 +71,11 @@ public class Calculator implements Parcelable {
         } else {
             secondNumber += ".";
         }
-        update();
+        history += ".";
+        update(secondNumber);
     }
 
-    public void update() {
+    public void update(String history) {
         if (operation != 0) {
             if (!secondNumber.equals("")) {
                 calcView.showResult(secondNumber);
@@ -76,23 +85,27 @@ public class Calculator implements Parcelable {
         } else {
             calcView.showResult(firstNumber);
         }
+        calcView.showHistory(history);
     }
 
     public void onPlusPressed() {
         operation = 1;
+        history += " + ";
+        calcView.showHistory(history);
     }
 
     public void onMultPressed() {
         operation = 2;
+        calcView.showHistory(firstNumber + " x ");
     }
 
     public void onEqualPressed() {
         if (operation == 1) {
             result = Double.parseDouble(firstNumber) + Double.parseDouble(secondNumber);
-            operation = 0;
         } else if (operation == 2) {
             result = Double.parseDouble(firstNumber) * Double.parseDouble(secondNumber);
         }
+        operation = 0;
         calcView.showResult(String.valueOf(result));
     }
 
@@ -100,6 +113,7 @@ public class Calculator implements Parcelable {
         firstNumber = in.readString();
         secondNumber = in.readString();
         operation = in.readInt();
+        history = in.readString();
     }
 
     @Override
@@ -107,6 +121,7 @@ public class Calculator implements Parcelable {
         parcel.writeString(firstNumber);
         parcel.writeString(secondNumber);
         parcel.writeInt(operation);
+        parcel.writeString(history);
     }
 
     public static final Creator<Calculator> CREATOR = new Creator<Calculator>() {
@@ -126,11 +141,17 @@ public class Calculator implements Parcelable {
         secondNumber = "";
         operation = 0;
         calcView.showResult("0");
+        history = "";
+        calcView.showHistory("0");
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getHistory() {
+        return history;
     }
 
     public String getFirstNumber() {

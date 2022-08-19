@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class ActivityMiniCalculator extends AppCompatActivity implements CalcView {
 
-    private TextView tv_inputted_numbs;
+    private TextView tv_history;
     private TextView tv_main;
     private Button btnOne, btnTwo, btnThree, btnPoint, btnPlus, btnMult, btnEqual, btnClr;
 
@@ -23,25 +22,8 @@ public class ActivityMiniCalculator extends AppCompatActivity implements CalcVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mini_calculator);
         Log.d("TAG", "Act: onCreate: ");
-
         init();
         calculator = new Calculator(this);
-
-
-/*        if (savedInstanceState == null) {
-              Log.d("TAG", "savedInstanceState: " + savedInstanceState);
-            calculator = new Calculator(tv_inputted_numbs, et_main);
-        } else {
-              Log.d("TAG", "savedInstanceState != null: " + savedInstanceState);
-            calculator = savedInstanceState.getParcelable("ARGS");
-              Log.d("TAG", "calculator: " + calculator);
-              Log.d("TAG", "calculator.first: " + calculator.getFirstNumber());
-              Log.d("TAG", "calculator.second: " + calculator.getSecondNumber());
-              Log.d("TAG", "calculator.result: " + calculator.getResult());
-                tv_inputted_numbs.setText(calculator.getTv_inputted_numbs());
-          }*/
-
-
         setListeners();
     }
 
@@ -55,16 +37,15 @@ public class ActivityMiniCalculator extends AppCompatActivity implements CalcVie
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Log.d("TAG", "Act: onRestoreInstanceState: ");
-
         calculator = savedInstanceState.getParcelable("ARGS");
-
-        calculator.update();
-
+        // указываем на новую активити в случае поворота экрана или убийства
+        calculator.setCalcView(this);
+        calculator.update(calculator.getHistory());
 
     }
 
     private void init() {
-        tv_inputted_numbs = findViewById(R.id.tv_inputted_numbs);
+        tv_history = findViewById(R.id.tv_inputted_numbs);
         //tv_inputted_numbs.setText(calculator.);
         tv_main = findViewById(R.id.tv_main);
         btnOne = findViewById(R.id.btn_One);
@@ -112,6 +93,9 @@ public class ActivityMiniCalculator extends AppCompatActivity implements CalcVie
         Log.d("TAG", "ActivityCalc: showResult: " + text);
         tv_main.setText(text);
         //Log.d("TAG", "ActivityCalc: showResult: tv_main " + tv_main);
+    }
 
+    public void showHistory(String text) {
+        tv_history.setText(text);
     }
 }
