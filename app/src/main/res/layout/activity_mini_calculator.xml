@@ -10,25 +10,23 @@
         android:id="@+id/tv_inputted_numbs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
         android:hint="numbers"
         android:textAlignment="textEnd"
-        android:layout_marginBottom="@dimen/margin_default"
-        app:layout_constraintBottom_toTopOf="@+id/et_main"
-        app:layout_constraintEnd_toEndOf="@+id/et_main"
-   />
+        app:layout_constraintEnd_toEndOf="@+id/tv_main"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <EditText
-        android:id="@+id/et_main"
+    <TextView
+        android:id="@+id/tv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:ems="10"
         android:hint="input"
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_inputted_numbs" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_One"
@@ -38,7 +36,7 @@
         android:text="1"
         app:layout_constraintEnd_toStartOf="@id/btn_Plus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_main" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_main" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_Two"
@@ -79,7 +77,7 @@
         android:text="+"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_One"
-        app:layout_constraintTop_toBottomOf="@+id/et_main" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_main" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_Mult"
